@@ -1,29 +1,38 @@
 # fast-screenshoot
-## Instalación
+
+[Spanish](./README_es.md)
+
+## Instalation
+
 Debian / Ubuntu:
-- Con x11-apps puedes tomar la screenshot de manera rápida en formato xwd con el comando con el mismo nombre.
-- Con netpbm puedes transformarla a otros tipos de formatos
-- Con xclip puedes copiarla al portapapeles.
+
+- With x11-apps you can take the screenshot fastly in xwd format with the command with the same name.
+
+- With netpbm you can convert it to another formats.
+
+- With xclip you can copy it to clipboard.
+ 
 ```sh
 sudo apt install x11-apps netpbm xclip
 git clone https://github.com/aguadecoco1301/fast-screenshoot
 cd fast-screenshoot
 ```
 ```
-# De esta forma, puedes ejecutarlo sin tener que escribir la ruta.
+# With this, you can run it without inserting the route
 sudo mv fast-screenshoot /usr/bin/fast-screenshoot
 ```
-## Uso
-Es fácil. Ejecuta la instrucción y en la ruta que hayas especificado se guardará la imagen. Por defecto es en tu carpeta de usuario.
 
-Puedes ejecutar el programa con la instrucción --copy, de esta forma, no se guardará, si no que será copiada al portapapeles.
+## Usage
+It's easy. Execute the instruction and in the route on you specified the screenshoot was saved. Default is your home folder.
 
-Puedes añadirlo a una combinación, por ejemplo, en i3, añade esto:
+You can exec it with the instruction --copy to copy the screenshoot and not save it in a file.
+
+You can add it to a keybind. For example, in i3, add this
+
 ```sh
 bindsym Print exec --no-startup-id fast-screenshoot
 ```
 
-# Colaborar
+# Collaborate
 
-Si deseás colaborar, ¡envía pull request!
-
+If you want to collaborate, just send a pull request!

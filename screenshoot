@@ -1,7 +1,7 @@
 #!/bin/dash
 #      ^^^^ Recomendado usar Dash, debido a que es mucho más rápido que bash. Si no, edítalo.
-SCREENTO=$HOME # Editar según donde quieras guardar la screenshoot. No es necesario que pongas la última /
-DT=' +screenshoot_%d%m%y_%H%M%S'; #Día, mes, año, hora, minutos y segundos de la screenshoot
+SCREENTO=$HOME # Editar según donde quieras guardar la screenshot. No es necesario que pongas la última /
+DT=' +screenshot_%d%m%y_%H%M%S'; #Día, mes, año, hora, minutos y segundos de la screenshot
 FILE_NAME=`date $DT`;
 IMG_FORMAT="png"; #png o jpeg
 NOTIFY=1; # 0: No enviar notificación | 1: Enviar notificación
@@ -13,16 +13,16 @@ if [ "$1" = "--help" ]; then #Opciones: screenshoot [opción]
 elif [ "$1" = "--copy" ]; then
 	xwd -screen -root | xwdtopnm | pnmto$IMG_FORMAT | xclip -selection clipboard -t image/$IMG_FORMAT;
 	if [ $NOTIFY = 1 ]; then
-		notify-send "Screenshoot guardada en formato "$IMG_FORMAT" en el portapapeles.";
+		notify-send "Screenshot guardada en formato "$IMG_FORMAT" en el portapapeles.";
 	else
-		echo "Screenshoot guardada en formato "$IMG_FORMAT" en el portapapeles.";
+		echo "Screenshot guardada en formato "$IMG_FORMAT" en el portapapeles.";
 	fi
 	exit
 fi
 xwd -screen -root | xwdtopnm | pnmto$IMG_FORMAT > $SCREENTO/$FILE_NAME.$IMG_FORMAT;
 if [ $NOTIFY = 1 ]; then
-	notify-send "Screenshoot guardada en"$SCREENTO/$FILE_NAME.$IMG_FORMAT;
+	notify-send "Screenshot guardada en"$SCREENTO/$FILE_NAME.$IMG_FORMAT;
 else
-	echo "Screenshoot guardada en: "$SCREENTO/$FILE_NAME.$IMG_FORMAT;
+	echo "Screenshot guardada en: "$SCREENTO/$FILE_NAME.$IMG_FORMAT;
 fi
 exit

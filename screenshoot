@@ -1,12 +1,28 @@
-#!/bin/bash
-#usage name_script delay_second
-if [ $1 ]; then
-sleep $1 #Set delay
-fi
-DT=' +screenshoot_%d%m%y_%H%M%S'; #Set date and time for filename
+#!/bin/dash
+#      ^^^^ Recomendado usar Dash, debido a que es mucho más rápido que bash. Si no, edítalo.
+SCREENTO=$HOME/Imagenes # Editar según donde quieras guardar la screenshoot
+DT=' +screenshoot_%d%m%y_%H%M%S'; #Día, mes, año, hora, minutos y segundos de la screenshoot
 FILE_NAME=`date $DT`;
-IMG_FORMAT="jpg"; #png, jpg, bmp, gif, tiff
-xwd -screen -root > $HOME/$FILE_NAME.xwd;
-convert $HOME/$FILE_NAME.xwd -type TrueColor $HOME/$FILE_NAME.$IMG_FORMAT;
-rm $HOME/$FILE_NAME.xwd;
-echo "Скриншот сохранен: "$HOME/$FILE_NAME.$IMG_FORMAT;
+IMG_FORMAT="png"; #png o jpeg
+NOTIFY=1; # 0: No enviar notificación | 1: Enviar notificación
+if [ "$1" = "--help" ]; then #Opciones: screenshoot [opción]
+	echo "Opciones:\
+		\n\t--help:\tDespliega esta ayuda\
+		\n\t--copy:\tCopia el resultado, no lo guarda";
+	exit
+elif [ "$1" = "--copy" ]; then
+	xwd -screen -root | xwdtopnm | pnmto$IMG_FORMAT | xclip -selection clipboard -t image/$IMG_FORMAT;
+	if [ $NOTIFY = 1 ]; then
+		notify-send "Screenshoot guardada en formato "$IMG_FORMAT" en el portapapeles.";
+	else
+		echo "Screenshoot guardada en formato "$IMG_FORMAT" en el portapapeles.";
+	fi
+	exit
+fi
+xwd -screen -root | xwdtopnm | pnmto$IMG_FORMAT > $SCREENTO/$FILE_NAME.$IMG_FORMAT;
+if [ $NOTIFY = 1 ]; then
+	notify-send "Screenshoot guardada en"$SCREENTO/$FILE_NAME.$IMG_FORMAT;
+else
+	echo "Screenshoot guardada en: "$SCREENTO/$FILE_NAME.$IMG_FORMAT;
+fi
+exit

@@ -1,6 +1,6 @@
 #!/bin/dash
 #      ^^^^ Recomendado usar Dash, debido a que es mucho más rápido que bash. Si no, edítalo.
-SCREENTO=$HOME/Imagenes # Editar según donde quieras guardar la screenshoot
+SCREENTO=$HOME # Editar según donde quieras guardar la screenshoot. No es necesario que pongas la última /
 DT=' +screenshoot_%d%m%y_%H%M%S'; #Día, mes, año, hora, minutos y segundos de la screenshoot
 FILE_NAME=`date $DT`;
 IMG_FORMAT="png"; #png o jpeg
